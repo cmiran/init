@@ -1,0 +1,2 @@
+# /sbin/ipatables
+sudo iptables --list

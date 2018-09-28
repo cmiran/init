@@ -1,0 +1,2 @@
+# /sbin/fdisk
+sudo fdisk -l
