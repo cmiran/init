@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# sudo su
+
+if [ ! /tmp/checksum_file ]
+then
+	md5sum /etc/crontab > /tmp/checksum_file
+fi
+
+echo "#!/bin/sh
+
+if [ md5sum -c /tmp/checksum_file ]
+then
+	mail -s "/etc/crontab has been modified.." root
+fi" > /etc/cron.daily/04
+chmod 755 /etc/cron.daily/04
+
+# crontab -e 0 0 * * * /etc/cron.daily/script.sh

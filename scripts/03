@@ -1,2 +1,14 @@
 #!/bin/sh
-du -ah $1 | sort -nr
+
+if [ $2 ]
+then
+	echo "the script only need one folder path.."
+	exit 0
+fi
+
+if [ $1 ]
+then
+	du -ah $1 | sort -nr
+else
+	echo "the script need a folder path.."
+fi

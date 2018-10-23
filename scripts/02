@@ -1,2 +1,16 @@
-echo "apt-get update && apt-get upgrade" >> /var/log/update_script.log
+#!/bin/sh
+
 # https://awc.com.my/uploadnew/5ffbd639c5e6eccea359cb1453a02bed_Setting%20Up%20Cron%20Job%20Using%20crontab.pdf
+# sudo su
+
+if [ ! /var/log/update_script.log ]
+then
+	sudo touch /var/log/update_script.log
+fi
+
+echo "#!/bin/sh
+
+sudo apt-get update && apt-get -y upgrade >> /var/log/update_script.log" > /etc/cron.weekly/02
+chmod 755 /etc/cron.weekly/02
+
+# crontab -e 0 4 * * * /etc/cron.weekly/script.sh" >> /etc/crontab

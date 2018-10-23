@@ -1,1 +1,2 @@
-/usr/sbin/service ssh status
+# /usr/sbin/service ssh status
+systemctl status sshd
