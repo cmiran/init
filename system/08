@@ -1,2 +1,1 @@
-# /etc/ssh/sshd_config
-~/.ssh/authorized_keys
+/etc/ssh/ssh_host_rsa_key

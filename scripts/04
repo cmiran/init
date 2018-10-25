@@ -1,18 +1,23 @@
 #!/bin/bash
 
 # sudo su
+# apt-get install mailutils
 
-if [ ! /tmp/checksum_file ]
+if [ !/root/checksum_file ]
 then
-	md5sum /etc/crontab > /tmp/checksum_file
+	md5sum /etc/crontab > /root/checksum_file
 fi
 
-echo "#!/bin/sh
+echo "#md5sum -c /root/checksum_file
+#!/bin/sh
 
-if [ md5sum -c /tmp/checksum_file ]
+MD5SUM='cat /root/checksum_file'
+MD5NEW='md5sum /etc/crontab'
+
+if [ "$MD5SUM" != "$MD5NEW" ]
 then
-	mail -s "/etc/crontab has been modified.." root
+	echo "/etc/crontab has been modified.." | mail -s "alert" root
 fi" > /etc/cron.daily/04
 chmod 755 /etc/cron.daily/04
 
-# crontab -e 0 0 * * * /etc/cron.daily/script.sh
+# crontab -e 0 0 * * * /etc/cron.daily/04

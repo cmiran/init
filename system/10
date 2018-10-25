@@ -1,2 +1,4 @@
+# mount
+# df -h (partitions actives)
 # /sbin/fdisk
 sudo fdisk -l
